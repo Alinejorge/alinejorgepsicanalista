@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aline Jorge | Psicanalista Clínica — Especialista em Neurociências</title>
+<meta name="description" content="Aline Jorge, psicanalista clínica e especialista em Neurociências (UNIFESP). Atendimento online para brasileiros no Brasil e no exterior.">
+
+<!-- Tipografia: Cormorant Garamond (títulos) + Inter (corpo) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   TOKENS — Identidade visual Aline Jorge
+   ============================================================ */
+:root{
+  --bg: #F7F5F2;
+  --bg-soft: #F1EEE8;
+  --primary: #1F4E5F;
+  --primary-light: #2C6478;
+  --accent: #B08D57;
+  --sage: #A9B7A6;
+  --sage-soft: #EDF0EA;
+  --text: #2B2B2B;
+  --text-soft: #5B6360;
+  --white: #FFFFFF;
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+
+  --container: 1180px;
+  --radius: 8px;
+
+  --ease: cubic-bezier(.22,.61,.36,1);
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*,*::before,*::after{ box-sizing: border-box; margin:0; padding:0; }
+
+html{ scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior: auto; }
+  *,*::before,*::after{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}
+
+body{
+  font-family: var(--font-body);
+  font-weight: 300;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img{ max-width:100%; display:block; }
+a{ color: inherit; text-decoration: none; }
+button{ font-family: inherit; cursor: pointer; border:none; background:none; }
+ul{ list-style: none; }
+
+h1,h2,h3,h4{
+  font-family: var(--font-display);
+  font-weight: 500;
+  color: var(--primary);
+  line-height: 1.15;
+}
+
+.container{
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+section{
+  padding: 128px 0;
+}
+
+.eyebrow{
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 18px;
+  display: inline-block;
+}
+
+.section-title{
+  font-size: clamp(2rem, 3.2vw, 2.75rem);
+  max-width: 720px;
+  margin-bottom: 28px;
+}
+
+.section-lede{
+  font-size: 1.08rem;
+  color: var(--text-soft);
+  max-width: 620px;
+  margin-bottom: 56px;
+}
+
+/* Divisor assinatura — motivo de ramo, usado com moderação nas transições */
+.signature-divider{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap: 14px;
+  margin: 0 auto 56px;
+  width: fit-content;
+  opacity: 0.85;
+}
+.signature-divider .line{
+  width: 46px; height: 1px;
+  background: var(--accent);
+  opacity: 0.55;
+}
+.signature-divider svg{ width: 22px; height: 22px; color: var(--accent); }
+
+/* Botões */
+.btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 34px;
+  background: var(--primary);
+  color: var(--white);
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  font-weight: 500;
+  transition: background 0.35s var(--ease), transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+  box-shadow: 0 8px 24px -12px rgba(31,78,95,0.45);
+}
+.btn:hover{
+  background: var(--primary-light);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px -12px rgba(31,78,95,0.55);
+}
+.btn:focus-visible{
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+.btn svg{ width:16px; height:16px; transition: transform .35s var(--ease); }
+.btn:hover svg{ transform: translateX(3px); }
+
+.btn-ghost{
+  background: transparent;
+  color: var(--primary);
+  border: 1px solid rgba(31,78,95,0.3);
+  box-shadow: none;
+}
+.btn-ghost:hover{
+  background: var(--primary);
+  color: var(--white);
+}
+
+/* ============================================================
+   HEADER / MENU
+   ============================================================ */
+.site-header{
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 28px 0;
+  transition: background 0.45s var(--ease), padding 0.45s var(--ease), box-shadow .45s var(--ease), backdrop-filter .45s var(--ease);
+}
+.site-header.scrolled{
+  padding: 16px 0;
+  background: rgba(247,245,242,0.92);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 1px 0 rgba(31,78,95,0.08);
+}
+.header-inner{
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+}
+.logo{
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  letter-spacing: 0.03em;
+  color: var(--primary);
+}
+.site-header:not(.scrolled) .logo,
+.site-header:not(.scrolled) .nav-links a{
+  color: var(--primary);
+}
+.nav-links{
+  display:flex;
+  gap: 40px;
+}
+.nav-links a{
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  color: var(--primary);
+  position: relative;
+  padding-bottom: 4px;
+}
+.nav-links a::after{
+  content:'';
+  position:absolute; left:0; bottom:0;
+  width:0; height:1px;
+  background: var(--accent);
+  transition: width 0.35s var(--ease);
+}
+.nav-links a:hover::after{ width:100%; }
+
+.nav-cta{
+  display: inline-block;
+  padding: 11px 22px;
+  border: 1px solid var(--primary);
+  border-radius: var(--radius);
+  font-size: 0.82rem;
+  color: var(--primary);
+  transition: all .35s var(--ease);
+}
+.nav-cta:hover{ background: var(--primary); color: var(--white); }
+
+.menu-toggle{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  z-index: 1100;
+}
+.menu-toggle span{
+  width: 24px; height: 1px; background: var(--primary);
+  transition: all .3s var(--ease);
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  min-height: 100vh;
+  display:flex;
+  align-items:center;
+  padding-top: 100px;
+  position: relative;
+}
+.hero .container{
+  display:grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 72px;
+  align-items:center;
+}
+.hero-portrait{
+  position:relative;
+  aspect-ratio: 4/5;
+  border-radius: var(--radius);
+  overflow:hidden;
+  background: linear-gradient(160deg, #E4DCCC 0%, #C9B99A 38%, #8FA593 72%, #6C8A82 100%);
+}
+.hero-portrait .portrait-figure{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit: cover;
+  object-position: top center;
+}
+.hero-portrait::after{
+  content:'';
+  position:absolute; inset:0;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.15);
+}
+.hero-portrait .portrait-caption{
+  position:absolute;
+  bottom: 20px; left: 20px;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  background: rgba(31,78,95,0.35);
+  backdrop-filter: blur(6px);
+  padding: 6px 12px;
+  border-radius: 4px;
+}
+
+.hero-content .eyebrow{ margin-bottom: 22px; }
+.hero-content h1{
+  font-size: clamp(2.3rem, 3.8vw, 3.4rem);
+  margin-bottom: 18px;
+}
+.hero-verse{
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.35rem, 2.1vw, 1.65rem);
+  color: var(--accent);
+  margin: 22px 0 4px;
+}
+.hero-role{
+  font-size: 1.05rem;
+  color: var(--text-soft);
+  margin-bottom: 4px;
+}
+.hero-name{
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 2.8vw, 2.3rem);
+  color: var(--primary);
+  font-weight: 600;
+  margin-bottom: 10px;
+  letter-spacing: 0.01em;
+}
+.hero-role strong{ color: var(--primary); font-weight: 500; }
+.hero-reach{
+  font-size: 0.95rem;
+  color: var(--text-soft);
+  margin-bottom: 36px;
+}
+.hero-quote{
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.55rem, 2.3vw, 1.95rem);
+  color: var(--primary);
+  line-height: 1.4;
+  max-width: 480px;
+  margin-bottom: 40px;
+  position: relative;
+  padding-left: 22px;
+  border-left: 2px solid var(--accent);
+}
+
+/* ============================================================
+   QUEM SOU
+   ============================================================ */
+.about{
+  background: var(--white);
+}
+.about .container{
+  display:grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 88px;
+  align-items:flex-start;
+}
+.about-figure{
+  position: sticky;
+  top: 130px;
+}
+.about-pullquote{
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.9rem;
+  color: var(--primary);
+  line-height: 1.35;
+  padding: 32px 0 32px 26px;
+  border-left: 2px solid var(--sage);
+  margin: 8px 0 8px;
+}
+.about-body p{
+  color: var(--text-soft);
+  margin-bottom: 22px;
+  font-size: 1.02rem;
+}
+.about-body p:first-child{
+  font-size: 1.12rem;
+  color: var(--text);
+}
+
+/* ============================================================
+   COMO A ANÁLISE PODE AJUDAR
+   ============================================================ */
+.help{
+  background: var(--bg-soft);
+}
+.help-grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(31,78,95,0.1);
+  border: 1px solid rgba(31,78,95,0.1);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.help-card{
+  background: var(--bg-soft);
+  padding: 44px 36px;
+  transition: background .4s var(--ease);
+}
+.help-card:hover{ background: var(--sage-soft); }
+.help-card .icon{
+  width: 34px; height: 34px;
+  margin-bottom: 22px;
+  color: var(--accent);
+}
+.help-card h3{
+  font-size: 1.35rem;
+  margin-bottom: 12px;
+}
+.help-card p{
+  font-size: 0.93rem;
+  color: var(--text-soft);
+}
+
+/* ============================================================
+   MINHA ABORDAGEM
+   ============================================================ */
+.approach .container{
+  display:grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 80px;
+  align-items:center;
+}
+.approach-art{
+  border-radius: var(--radius);
+  overflow:hidden;
+  background: var(--primary);
+  display: flex;
+  align-items: center;
+}
+.approach-art svg{ width:100%; height:100%; }
+.approach-art img{ width:100%; height:auto; display:block; }
+.approach-text .section-title{ margin-bottom: 24px; }
+.approach-text p{
+  color: var(--text-soft);
+  margin-bottom: 20px;
+  font-size: 1.02rem;
+}
+.approach-text p:first-of-type{
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-style: italic;
+  color: var(--primary);
+}
+
+/* ============================================================
+   FAIXA CONTEMPLATIVA — respiro visual entre seções
+   ============================================================ */
+.contemplative-band{
+  padding: 96px 0;
+  background: var(--sage-soft);
+  display: flex;
+  justify-content: center;
+}
+.contemplative-img{
+  width: 100%;
+  max-width: 880px;
+  height: auto;
+  border-radius: var(--radius);
+  box-shadow: 0 24px 60px -24px rgba(31,78,95,0.35);
+}
+
+/* ============================================================
+   COMO FUNCIONA
+   ============================================================ */
+.how{
+  background: var(--primary);
+  color: var(--white);
+}
+.how .eyebrow{ color: var(--accent); }
+.how .section-title{ color: var(--white); }
+.how .section-lede{ color: rgba(255,255,255,0.72); }
+.how-grid{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+}
+.how-card{
+  padding: 34px 26px;
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: var(--radius);
+  background: rgba(255,255,255,0.03);
+  transition: border-color .4s var(--ease), background .4s var(--ease);
+}
+.how-card:hover{
+  border-color: var(--accent);
+  background: rgba(255,255,255,0.06);
+}
+.how-num{
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+  display:block;
+}
+.how-card h3{
+  color: var(--white);
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+.how-card p{
+  color: rgba(255,255,255,0.68);
+  font-size: 0.9rem;
+}
+
+/* ============================================================
+   FAQ
+   ============================================================ */
+.faq{ background: var(--bg); }
+.faq-list{ max-width: 760px; }
+.faq-item{
+  border-bottom: 1px solid rgba(31,78,95,0.15);
+}
+.faq-question{
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 24px;
+  padding: 28px 4px;
+  text-align:left;
+  font-family: var(--font-display);
+  font-size: 1.22rem;
+  color: var(--primary);
+}
+.faq-question .plus{
+  flex-shrink:0;
+  width: 20px; height: 20px;
+  position:relative;
+}
+.faq-question .plus::before,
+.faq-question .plus::after{
+  content:'';
+  position:absolute;
+  background: var(--accent);
+  transition: transform .4s var(--ease);
+}
+.faq-question .plus::before{ top:9px; left:0; width:20px; height:1px; }
+.faq-question .plus::after{ top:0; left:9px; width:1px; height:20px; }
+.faq-item.open .plus::after{ transform: rotate(90deg); opacity:0; }
+.faq-item.open .plus::before{ transform: rotate(180deg); }
+
+.faq-answer{
+  max-height: 0;
+  overflow:hidden;
+  transition: max-height .5s var(--ease);
+}
+.faq-answer p{
+  padding: 0 4px 28px;
+  color: var(--text-soft);
+  max-width: 620px;
+  font-size: 0.98rem;
+}
+
+/* ============================================================
+   CONTATO
+   ============================================================ */
+.contact{
+  background: var(--sage-soft);
+  text-align:center;
+}
+.contact .container{
+  max-width: 620px;
+}
+.contact .signature-divider{ margin-bottom: 32px; }
+.contact h2{
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  margin-bottom: 20px;
+}
+.contact p{
+  color: var(--text-soft);
+  font-size: 1.05rem;
+  margin-bottom: 44px;
+}
+
+/* ============================================================
+   RODAPÉ
+   ============================================================ */
+.site-footer{
+  background: var(--primary);
+  color: rgba(255,255,255,0.85);
+  padding: 96px 0 40px;
+}
+.footer-quote{
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+  color: var(--white);
+  max-width: 780px;
+  line-height: 1.45;
+  margin-bottom: 26px;
+}
+.footer-text{
+  max-width: 640px;
+  color: rgba(255,255,255,0.62);
+  font-size: 0.95rem;
+  margin-bottom: 64px;
+}
+.footer-bottom{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255,255,255,0.14);
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.5);
+}
+.footer-bottom .footer-logo{
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--white);
+}
+
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+.reveal{
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .9s var(--ease), transform .9s var(--ease);
+}
+.reveal.in-view{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================================
+   RESPONSIVO
+   ============================================================ */
+@media (max-width: 960px){
+  section{ padding: 88px 0; }
+  .hero .container,
+  .about .container,
+  .approach .container{
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .hero{ padding-top: 130px; min-height: auto; }
+  .approach .container{ direction: ltr; }
+  .approach-art{ order: -1; max-width: 380px; margin: 0 auto; }
+  .about-figure{ position: static; }
+  .help-grid{ grid-template-columns: repeat(2, 1fr); }
+  .how-grid{ grid-template-columns: repeat(2, 1fr); }
+
+  .nav-links{
+    position: fixed;
+    top: 0; right: 0;
+    height: 100vh;
+    width: min(320px, 82vw);
+    background: var(--bg);
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0 48px;
+    gap: 30px;
+    transform: translateX(100%);
+    transition: transform .5s var(--ease);
+    box-shadow: -8px 0 40px rgba(0,0,0,0.08);
+  }
+  .nav-links.open{ transform: translateX(0); }
+  .nav-links a{ font-size: 1.1rem; }
+  .nav-cta{ display:none; }
+  .menu-toggle{ display:flex; }
+  .menu-toggle.open span:nth-child(1){ transform: translateY(6px) rotate(45deg); }
+  .menu-toggle.open span:nth-child(2){ opacity:0; }
+  .menu-toggle.open span:nth-child(3){ transform: translateY(-6px) rotate(-45deg); }
+}
+
+@media (max-width: 620px){
+  .container{ padding: 0 22px; }
+  .help-grid{ grid-template-columns: 1fr; }
+  .how-grid{ grid-template-columns: 1fr; }
+  .footer-bottom{ flex-direction: column; align-items:flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     MENU
+     ============================================================ -->
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+    <a href="#inicio" class="logo">Aline Jorge</a>
+
+    <nav>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#inicio" class="nav-link">Início</a></li>
+        <li><a href="#quem-sou" class="nav-link">Quem Sou</a></li>
+        <li><a href="#como-ajuda" class="nav-link">Como a Análise Pode Ajudar?</a></li>
+        <li><a href="#abordagem" class="nav-link">Minha Abordagem</a></li>
+        <li><a href="#como-funciona" class="nav-link">Como Funciona?</a></li>
+        <li><a href="#faq" class="nav-link">Perguntas Frequentes</a></li>
+        <li><a href="#contato" class="nav-link">Contato</a></li>
+      </ul>
+    </nav>
+
+    <a href="#contato" class="nav-cta">Agendar Atendimento</a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero" id="inicio">
+  <div class="container">
+    <div class="hero-portrait">
+      <img src="foto1.jpg" alt="Aline Jorge, psicanalista clínica" class="portrait-figure">
+    </div>
+
+    <div class="hero-content reveal">
+      <span class="eyebrow">Psicanálise &amp; Neurociências</span>
+      <h1>Aline Jorge — Psicanalista Clínica</h1>
+      <p class="hero-role">Especialista em Neurociências (UNIFESP)</p>
+      <p class="hero-reach">Atendimento online para brasileiros no Brasil e no exterior.</p>
+
+      <p class="hero-verse">Um novo verso para a sua história.</p>
+
+      <p class="hero-quote">"Compreender a própria história é o primeiro passo para transformar o presente."</p>
+
+      <a href="https://wa.me/5511969289384" target="_blank" rel="noopener" class="btn">
+        Agendar Atendimento
+        <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     QUEM SOU
+     ============================================================ -->
+<section class="about" id="quem-sou">
+  <div class="container">
+    <div class="about-figure reveal">
+      <span class="eyebrow">Quem sou</span>
+      <blockquote class="about-pullquote">"Cada indivíduo é um infinito particular."</blockquote>
+    </div>
+
+    <div class="about-body reveal">
+      <p>Sou Aline Jorge, psicanalista clínica e especialista em Neurociências pela UNIFESP.</p>
+
+      <p>Minha trajetória é guiada pelo interesse em compreender o ser humano em sua complexidade, integrando a escuta psicanalítica ao conhecimento científico sobre emoções, memória, comportamento e processos cognitivos.</p>
+
+      <p>Na clínica, ofereço um espaço de escuta ética, acolhedora e livre de julgamentos, onde cada pessoa pode falar no seu próprio tempo e encontrar novos sentidos para sua história.</p>
+
+      <p>Acredito que o autoconhecimento possibilita transformações profundas, favorecendo formas mais conscientes e autênticas de viver e de se relacionar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     COMO A ANÁLISE PODE AJUDAR
+     ============================================================ -->
+<section class="help" id="como-ajuda">
+  <div class="container">
+    <span class="eyebrow reveal">Sinais e inquietações</span>
+    <h2 class="section-title reveal">Como a análise pode ajudar?</h2>
+    <p class="section-lede reveal">Talvez você esteja vivendo um momento em que os próprios pensamentos parecem mais pesados do que o habitual ou em que algo insiste em se repetir, sem que você entenda bem o porquê. A análise não promete respostas prontas, mas oferece um espaço contínuo de escuta para que essas questões possam, aos poucos, ganhar forma e sentido.</p>
+
+    <div class="help-grid reveal">
+      <div class="help-card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.2"/><path d="M12 8v5M12 16h.01" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        <h3>Ansiedade</h3>
+        <p>Pensamentos acelerados e uma sensação constante de alerta tomam o dia a dia, dificultando o descanso da mente.</p>
+      </div>
+      <div class="help-card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 16c3-6 13-6 16 0" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><circle cx="12" cy="9" r="4" stroke="currentColor" stroke-width="1.2"/></svg>
+        <h3>Depressão</h3>
+        <p>O desânimo e o vazio se instalam, tornando mais difícil encontrar sentido nas coisas simples da rotina.</p>
+      </div>
+      <div class="help-card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v18M5 8l7-5 7 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>Autoestima</h3>
+        <p>A forma como você se enxerga pesa mais do que gostaria, afetando decisões, vínculos e a própria voz interior.</p>
+      </div>
+      <div class="help-card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="12" r="3.2" stroke="currentColor" stroke-width="1.2"/><circle cx="16" cy="12" r="3.2" stroke="currentColor" stroke-width="1.2"/></svg>
+        <h3>Relacionamentos</h3>
+        <p>Padrões que se repetem em vínculos afetivos, familiares ou profissionais parecem difíceis de compreender e transformar.</p>
+      </div>
+      <div class="help-card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 4v16M6 20c0-5 3-7 6-7s6 2 6 7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        <h3>Luto e Transições</h3>
+        <p>Perdas e mudanças de fase pedem um espaço de elaboração para que a vida siga fazendo sentido.</p>
+      </div>
+      <div class="help-card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.2"/><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.2" opacity="0.4"/></svg>
+        <h3>Autoconhecimento</h3>
+        <p>Surge o desejo de compreender melhor a própria história e as razões por trás dos próprios sentimentos e escolhas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     MINHA ABORDAGEM
+     ============================================================ -->
+<section class="approach" id="abordagem">
+  <div class="container">
+    <div class="approach-art reveal">
+      <img src="foto2.jpg" alt="Ilustração conceitual representando memória, identidade e processo terapêutico" style="width:100%;height:100%;object-fit:cover;">
+    </div>
+
+    <div class="approach-text reveal">
+      <span class="eyebrow">Minha abordagem</span>
+      <h2 class="section-title">Cada processo analítico é único</h2>
+      <p>Não existem respostas prontas, interpretações padronizadas ou um caminho igual para todas as pessoas.</p>
+      <p>Meu trabalho é fundamentado na Psicanálise contemporânea e dialoga com as Neurociências para ampliar a compreensão do sofrimento psíquico, sempre respeitando a singularidade de cada pessoa.</p>
+      <p>A análise acontece por meio da escuta, da reflexão e da construção de novos sentidos para as experiências vividas.</p>
+      <p>Muitas das questões que levamos para a vida adulta têm raízes em experiências mais antigas, nem sempre lembradas de forma consciente. Ao longo do processo, essas marcas podem ser revisitadas com cuidado, permitindo que a história de cada pessoa seja compreendida em suas próprias conexões, ritmos e significados.</p>
+
+      <a href="https://wa.me/5511969289384" target="_blank" rel="noopener" class="btn">
+        Agendar Atendimento
+        <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     COMO FUNCIONA
+     ============================================================ -->
+<section class="how" id="como-funciona">
+  <div class="container">
+    <span class="eyebrow reveal">Estrutura do atendimento</span>
+    <h2 class="section-title reveal">Como funciona?</h2>
+    <p class="section-lede reveal">Um processo pensado para o seu tempo. Cada etapa é conduzida com cuidado, respeitando o ritmo e as necessidades de cada pessoa, desde o primeiro contato até a construção de uma rotina de encontros que faça sentido para a sua vida.</p>
+
+    <div class="how-grid reveal">
+      <div class="how-card">
+        <span class="how-num">01</span>
+        <h3>Primeira sessão</h3>
+        <p>Um encontro inicial de acolhimento para nos conhecermos e entender o que trouxe você até aqui.</p>
+      </div>
+      <div class="how-card">
+        <span class="how-num">02</span>
+        <h3>Sessões de aproximadamente 50 minutos</h3>
+        <p>Tempo dedicado à escuta e à reflexão, no formato clássico da prática analítica.</p>
+      </div>
+      <div class="how-card">
+        <span class="how-num">03</span>
+        <h3>Encontros semanais</h3>
+        <p>A regularidade constrói continuidade e aprofunda o processo analítico ao longo do tempo.</p>
+      </div>
+      <div class="how-card">
+        <span class="how-num">04</span>
+        <h3>Atendimento online</h3>
+        <p>Sessões por videochamada, com a mesma qualidade de escuta, onde quer que você esteja.</p>
+      </div>
+    </div>
+
+    <p class="section-lede reveal" style="margin-top:48px;margin-bottom:0;">O formato online permite que brasileiros no exterior mantenham a continuidade do processo analítico com a mesma regularidade e qualidade de escuta de um atendimento presencial, respeitando apenas os ajustes de fuso horário necessários.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     PERGUNTAS FREQUENTES
+     ============================================================ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <span class="eyebrow reveal">Perguntas frequentes</span>
+    <h2 class="section-title reveal">Dúvidas comuns antes de começar</h2>
+    <p class="section-lede reveal">É natural que algumas perguntas surjam antes do primeiro contato. Reuni aqui as principais, para que você possa chegar com mais tranquilidade ao início do processo.</p>
+
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          Preciso saber exatamente o que falar?
+          <span class="plus"></span>
+        </button>
+        <div class="faq-answer">
+          <p>Não. A análise acontece justamente na construção dessa fala. Você pode chegar sem saber por onde começar; esse também é um ponto de partida legítimo. Aos poucos, a própria escuta vai abrindo caminhos que, muitas vezes, não seriam encontrados sozinhos.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          Existe um tempo determinado para a análise?
+          <span class="plus"></span>
+        </button>
+        <div class="faq-answer">
+          <p>Não há um prazo fixo. Cada processo tem seu próprio tempo, que respeita a singularidade de cada pessoa e daquilo que precisa ser elaborado. Alguns caminhos pedem meses de escuta contínua, outros se estendem por anos, o que importa é o ritmo de cada história, não um cronograma predefinido.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          O que posso esperar da análise?
+          <span class="plus"></span>
+        </button>
+        <div class="faq-answer">
+          <p>Um espaço de escuta ética e sem julgamentos, onde é possível compreender melhor a própria história e construir novos sentidos para as experiências vividas. Com o tempo, é comum perceber mais clareza diante das próprias emoções e mais liberdade nas escolhas do dia a dia.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          E se eu ainda não souber por onde começar?
+          <span class="plus"></span>
+        </button>
+        <div class="faq-answer">
+          <p>Tudo bem. Não saber por onde começar já é, em si, um ponto de partida. A análise se constrói junto, passo a passo. Você não precisa chegar com tudo organizado; basta o desejo de se ouvir com mais cuidado.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONTATO
+     ============================================================ -->
+<section class="contact" id="contato">
+  <div class="container">
+    <div class="signature-divider">
+      <span class="line"></span>
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 21c0-9 4-14 9-16-1 9-4 14-9 16z" stroke="currentColor" stroke-width="1.1"/><path d="M12 21c0-9-4-14-9-16 1 9 4 14 9 16z" stroke="currentColor" stroke-width="1.1"/></svg>
+      <span class="line"></span>
+    </div>
+    <h2 class="reveal">Vamos conversar?</h2>
+    <p class="reveal">Se algo do que você leu aqui fez sentido, este pode ser o momento de dar o primeiro passo. Escreva, e vamos encontrar um horário para o seu atendimento.</p>
+    <a href="https://wa.me/5511969289384" target="_blank" rel="noopener" class="btn reveal">
+      Agendar Atendimento
+      <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ============================================================
+     RODAPÉ
+     ============================================================ -->
+<!-- ============================================================
+     IMAGEM CONTEMPLATIVA — pausa visual entre Abordagem e Como Funciona
+     ============================================================ -->
+<section class="contemplative-band reveal">
+  <img src="foto3.jpg" alt="Pôr do sol contemplativo — atmosfera de presença e quietude" class="contemplative-img">
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="footer-quote">"Palavras e ideias podem mudar o mundo, e você pode contribuir com um verso."</p>
+    <p class="footer-text">Inspirada no filme A Sociedade dos Poetas Mortos, acredito que a análise não muda o passado, mas pode transformar a forma como nos relacionamos com ele. Ao compreender a própria história, torna-se possível construir novos significados e escrever um novo verso para a própria vida.</p>
+
+    <div class="footer-bottom">
+      <span class="footer-logo">Aline Jorge</span>
+      <span>Psicanalista Clínica · Especialista em Neurociências (UNIFESP)</span>
+      <span>&copy; <span id="year"></span> — Todos os direitos reservados</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   MENU: transparente → sólido ao rolar
+   ============================================================ */
+const header = document.getElementById('siteHeader');
+const toggleHeader = () => {
+  header.classList.toggle('scrolled', window.scrollY > 40);
+};
+toggleHeader();
+window.addEventListener('scroll', toggleHeader, { passive: true });
+
+/* Menu mobile */
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+menuToggle.addEventListener('click', () => {
+  const isOpen = navLinks.classList.toggle('open');
+  menuToggle.classList.toggle('open', isOpen);
+  menuToggle.setAttribute('aria-expanded', isOpen);
+});
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    menuToggle.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+  });
+});
+
+/* ============================================================
+   FAQ — accordion
+   ============================================================ */
+document.querySelectorAll('.faq-item').forEach(item => {
+  const question = item.querySelector('.faq-question');
+  const answer = item.querySelector('.faq-answer');
+
+  question.addEventListener('click', () => {
+    const isOpen = item.classList.contains('open');
+
+    // fecha os demais itens
+    document.querySelectorAll('.faq-item.open').forEach(openItem => {
+      if (openItem !== item) {
+        openItem.classList.remove('open');
+        openItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        openItem.querySelector('.faq-answer').style.maxHeight = null;
+      }
+    });
+
+    item.classList.toggle('open', !isOpen);
+    question.setAttribute('aria-expanded', String(!isOpen));
+    answer.style.maxHeight = isOpen ? null : answer.scrollHeight + 'px';
+  });
+});
+
+/* ============================================================
+   SCROLL REVEAL — fade + translateY discreto
+   ============================================================ */
+const revealItems = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting){
+      entry.target.classList.add('in-view');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+revealItems.forEach(item => revealObserver.observe(item));
+
+/* Ano do rodapé */
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
